@@ -92,3 +92,47 @@ catch (Exception ex)
     Console.WriteLine(ex.Message);
 }
 Console.WriteLine($"A tárolt vásárlók száma 1 törlés után: {repo.Vasarlok.Count} db");
+
+Console.WriteLine("\n B) feladatrész 3. feladat");
+Console.WriteLine("\n\t-1.");
+foreach (Vasarlo v in repo.GetVasarloWithLowestBalance())
+{
+    Console.WriteLine(v);
+}
+
+Console.WriteLine("\n\t-2.");
+foreach (Vasarlo v in repo.GetVasarloWithHighestBalance())
+{
+    Console.WriteLine(v);
+}
+
+Console.WriteLine("\n\t-3.");
+Console.WriteLine("Átlagos pénz 1000-re kerekítve :" + repo.GetAvgBalanceRounded());
+
+Console.WriteLine("\n\t-4.");
+Random random = new Random();
+int randomMin = random.Next((int)Math.Ceiling(repo.Vasarlok.Min(v => v.Balance)), (int)Math.Floor(repo.Vasarlok.Max(v => v.Balance)));
+int randomMax = random.Next(randomMin, (int)Math.Floor(repo.Vasarlok.Max(v => v.Balance)));
+foreach (Vasarlo v in repo.GetVasarlokWithBalanceBetween(randomMin, randomMax))
+{
+    if (v.Email != null)
+    {
+        Console.WriteLine(v);
+    }
+    else
+    {
+        Console.WriteLine("Nincs ilyen vásárló");
+    }
+}
+
+Console.WriteLine("\n\t-5.");
+Console.WriteLine("Összes összeg:" + repo.SumOfBalances());
+
+Console.WriteLine("\n\t-6.");
+Console.WriteLine("A keresett vásárló (vasarlo.valer@sokatveszek.hu): " + repo.GetVasarloByEmail("vasarlo.valer@sokatveszek.hu"));
+
+Console.WriteLine("\n\t-7.");
+foreach(KeyValuePair<string, double> kvp in repo.CategorizeVasarlok())
+{
+    Console.WriteLine(kvp.Key + " : " + kvp.Value);
+}
