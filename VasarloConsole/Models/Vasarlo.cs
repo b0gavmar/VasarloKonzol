@@ -34,7 +34,7 @@ namespace VasarloConsole.Models
             _balance = balance;
         }
 
-        public string Name { get => _name; set => value = _name; }
+        public string Name { get => _name; set => _name = value; }
         public string Email { get => _email; }
         public double Balance { get => _balance; }
         public int Increases { get => _increases; }
