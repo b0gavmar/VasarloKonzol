@@ -204,5 +204,52 @@ namespace VasarloConsole.Repos
                     v.Email.Contains("@") ? v.Email.Split('@')[1] : "")
                 .ToList();
         }
+
+        public List<string> GetUniqueDomains()
+        {
+            List<string> domains = new List<string>();
+            foreach (Vasarlo v in _vasarlok)
+            {
+                if (v.Email.Contains("@"))
+                {
+                    string domain = v.Email.Split('@')[1];
+                    if (!domains.Contains(domain))
+                    {
+                        domains.Add(domain);
+                    }
+                }
+            }
+
+            return domains;
+        }
+
+        public List<double> GetUniqueBalabnces()
+        {
+            List<double> balances = new List<double>();
+            foreach (Vasarlo v in _vasarlok)
+            {
+                if (!balances.Contains(v.Balance))
+                {
+                    balances.Add(v.Balance);
+                }
+            }
+
+            return balances;
+        }
+
+        public List<string> GetUniqueFirstLetters()
+        {
+            List<string> letters = new List<string>();
+            foreach (Vasarlo v in _vasarlok)
+            {
+                string firstLetter = v.Name[0].ToString().ToUpper();
+                if (!letters.Contains(firstLetter))
+                {
+                    letters.Add(firstLetter);
+                }
+            }
+
+            return letters;
+        }
     }
 }

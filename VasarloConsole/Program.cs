@@ -58,10 +58,10 @@ catch (Exception ex)
 
 Console.WriteLine("\n 4. feladat");
 
-Vasarlo v2 = new Vasarlo("vasarlo2mail", 0);
-Vasarlo v3 = new Vasarlo("vasarlo3mail", 300);
-Vasarlo v4 = new Vasarlo("vasarlo4mail", 400);
-Vasarlo v5 = new Vasarlo("vasarlo5mail", 500);
+Vasarlo v2 = new Vasarlo("vasarlo2@mail.hu", 0);
+Vasarlo v3 = new Vasarlo("vasarlo3@mail.hu", 300);
+Vasarlo v4 = new Vasarlo("vasarlo4@mail.hu", 400);
+Vasarlo v5 = new Vasarlo("vasarlo5@mail.hu", 500);
 Console.WriteLine(v2);
 Console.WriteLine(v3);
 Console.WriteLine(v4);
