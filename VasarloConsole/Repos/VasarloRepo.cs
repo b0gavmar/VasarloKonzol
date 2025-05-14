@@ -162,5 +162,24 @@ namespace VasarloConsole.Repos
             return text;
         }
 
+        public List<Vasarlo> GetVasarlokWithHigherBalanceThan(double bal)
+        {
+            return _vasarlok.Where(v=>v.Balance > bal).ToList();
+        }
+
+        public List<Vasarlo> GetVasarlokWithZeroBalance()
+        {
+            return _vasarlok.Where(v => v.Balance == 0).ToList();
+        }
+
+        public List<Vasarlo> GetVasarlokWhereNameIncludes(string s)
+        {
+            return _vasarlok.Where(v => v.Name.Contains(s)).ToList();
+        }
+
+        public List<Vasarlo> GetVasarlokWithHigherBalanceThanAndHasADomain(double bal, string domain)
+        {
+            return _vasarlok.Where(v => v.Balance > bal && v.Email.EndsWith(domain)).ToList();
+        }
     }
 }
