@@ -75,9 +75,18 @@ namespace VasarloConsole.Models
 
         public void SpendMoney(double amount)
         {
-            if (CanSpend)
+            if (amount <= 0)
             {
+                throw new ArgumentException("Az összeg nem lehet negatív vagy 0");
+            }
 
+            if (CanBuy(amount))
+            {
+                _balance -= amount;
+            }
+            else
+            {
+                throw new ArgumentException("Nincs elég pénz a vásárláshoz");
             }
         }
 
