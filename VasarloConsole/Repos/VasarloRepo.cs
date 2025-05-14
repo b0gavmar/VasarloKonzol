@@ -132,5 +132,35 @@ namespace VasarloConsole.Repos
                 .ToDictionary(g => g.Key, h => h.Count() /(double)_vasarlok.Count());
         }
 
+        public List<string> GetAllNames()
+        {
+            return _vasarlok.Select(v => v.Name).ToList();
+        }
+
+        public List<string> GetAllEmails()
+        {
+            return _vasarlok.Select(v => v.Email).ToList();
+        }
+
+        public List<VasarloDto> ToDtos()
+        {
+            List<VasarloDto> dtoList = new List<VasarloDto>();
+            foreach (Vasarlo v in _vasarlok)
+            {
+                dtoList.Add(new VasarloDto(v.Name, v.Email, v.Balance));
+            }
+            return dtoList;
+        }
+
+        public List<string> GetListText()
+        {
+            List<string> text = new List<string>();
+            foreach(Vasarlo v in _vasarlok)
+            {
+                text.Add($"Név: {v.Name}, Egyenleg: {v.Balance} Ft");
+            }
+            return text;
+        }
+
     }
 }
