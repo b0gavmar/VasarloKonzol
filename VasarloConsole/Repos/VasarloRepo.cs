@@ -174,12 +174,35 @@ namespace VasarloConsole.Repos
 
         public List<Vasarlo> GetVasarlokWhereNameIncludes(string s)
         {
-            return _vasarlok.Where(v => v.Name.Contains(s)).ToList();
+            return _vasarlok.Where(v => v.Name.ToUpper().Contains(s.ToUpper())).ToList();
         }
 
         public List<Vasarlo> GetVasarlokWithHigherBalanceThanAndHasADomain(double bal, string domain)
         {
-            return _vasarlok.Where(v => v.Balance > bal && v.Email.EndsWith(domain)).ToList();
+            return _vasarlok.Where(v => v.Balance > bal && v.Email.ToUpper().EndsWith(domain.ToUpper())).ToList();
+        }
+
+        public List<Vasarlo> GetVasarlokOrderedAlphabetically()
+        {
+            return _vasarlok.OrderBy(v => v.Name).ToList();
+        }
+
+        public List<Vasarlo> GetVasarlokOrderedByBalance()
+        {
+            return _vasarlok.OrderBy(v => v.Balance).ToList();
+        }
+
+        public List<Vasarlo> GetVasarlokOrderedAlphabeticallyAndByBalance()
+        {
+            return _vasarlok.OrderByDescending(v => v.Balance).OrderBy(v => v.Name).ToList();
+        }
+
+        public List<Vasarlo> GetVasarlokOrderedByEmailDomain()
+        {
+            return _vasarlok
+                .OrderBy(v =>
+                    v.Email.Contains("@") ? v.Email.Split('@')[1] : "")
+                .ToList();
         }
     }
 }
