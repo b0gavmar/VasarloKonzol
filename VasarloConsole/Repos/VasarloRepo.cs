@@ -251,5 +251,13 @@ namespace VasarloConsole.Repos
 
             return letters;
         }
+
+        public List<Vasarlo> GetUniqueNameAndBalanceCombos()
+        {
+            return _vasarlok
+                .GroupBy(v => new { v.Name, v.Balance })
+                .Select(g => g.First())
+                .ToList();
+        }
     }
 }
