@@ -19,6 +19,10 @@ namespace VasarloConsole.Models
             {
                 throw new NegativeBalanceException("Az összeg nem lehet negatív");
             }
+            if (!email.Contains("@"))
+            {
+                throw new ArgumentException("Az email cím nem megfelelő");
+            }
             _name = name;
             _email = email;
             _balance = balance;
@@ -29,6 +33,10 @@ namespace VasarloConsole.Models
             if (balance < 0)
             {
                 throw new NegativeBalanceException("Az összeg nem lehet negatív");
+            }
+            if (!email.Contains("@"))
+            {
+                throw new ArgumentException("Az email cím nem megfelelő");
             }
             _email = email;
             _balance = balance;

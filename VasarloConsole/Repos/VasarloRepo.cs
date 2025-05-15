@@ -259,5 +259,38 @@ namespace VasarloConsole.Repos
                 .Select(g => g.First())
                 .ToList();
         }
+
+        public Dictionary<string,List<Vasarlo>> GroupByFirstLetterOfName()
+        {
+            return _vasarlok
+                .GroupBy(v => v.Name[0].ToString().ToUpper())
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            /*Dictionary<string, List<Vasarlo>> groups = new Dictionary<string, List<Vasarlo>>();
+            foreach (Vasarlo v in _vasarlok)
+            {
+                string firstLetter = v.Name[0].ToString().ToUpper();
+                if (!groups.ContainsKey(firstLetter))
+                {
+                    groups[firstLetter] = new List<Vasarlo>();
+                }
+                groups[firstLetter].Add(v);
+            }
+            return groups;*/
+        }
+
+        public Dictionary<string, List<Vasarlo>> GroupByEmailDomain()
+        {
+            return _vasarlok
+                .GroupBy(v => v.Email.Split("@")[1].ToUpper())
+                .ToDictionary(g => g.Key, g => g.ToList());
+        }
+
+        public Dictionary<string, List<Vasarlo>> GroupByBalance()
+        {
+            return _vasarlok
+                .GroupBy(v => v.Balance > 0 ? "Pozitív" : "Nulla")
+                .ToDictionary(g => g.Key, g => g.ToList());
+        }
     }
 }
